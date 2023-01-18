@@ -11,6 +11,8 @@ app.use(express.json());
 app.use('/api/smurfs', smurfsRouters);
 app.use('/api/smurf', smurfRouters);
 
-app.listen(PORT, () => {
-  console.log(`Listening on port: ${ PORT }`);
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log('Listening for requests');
+  });
 });

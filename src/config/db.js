@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
-mongoose.set('strictQuery', false);
-console.log(process.env.MONGODB_CONNECTION);
-mongoose.connect(
-  process.env.MONGODB_CONNECTION, { 
-    useUnifiedTopology: true,
-    useNewUrlParser: true,
+const connectDB = async () => {
+  try {
+    moongoose.set('strictQuery', false);
+    const dbCO = await mongoose.connect(
+      process.env.MONGODB_CONNECTION, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+      });
+    console.log(`MongoDB Connected: ${dbCO.connection.host}`);
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
   }
-)
-.then(() => console.log("Connected to MongoDB"))
-.catch((err) => console.log("Failed to connect to MongoDB", err));
+};

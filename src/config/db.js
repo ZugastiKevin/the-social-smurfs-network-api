@@ -14,3 +14,9 @@ const connectDB = async () => {
     process.exit(1);
   }
 };
+
+connectDB().then(() => {
+  app.listen(PORT, () => {
+    console.log('Listening for requests');
+  });
+});

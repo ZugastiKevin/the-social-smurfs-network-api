@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const connectDB = async () => {
   try {
-    moongoose.set('strictQuery', false);
+    mongoose.set('strictQuery', false);
     const dbCO = await mongoose.connect(
       process.env.MONGODB_CONNECTION, {
         useUnifiedTopology: true,

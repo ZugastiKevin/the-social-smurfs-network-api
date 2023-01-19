@@ -114,7 +114,7 @@ router.delete("/me", auth, async (req, res) => {
     senders(mode='cancelation', smurf.email, smurf.pseudo);
     res.send(req.smurf + "smurf deleted");
   } catch (err) {
-    res.status(500).send();
+    res.status(500).send(err);
   };
 });
 

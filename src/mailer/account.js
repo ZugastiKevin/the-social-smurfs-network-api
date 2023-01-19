@@ -38,8 +38,6 @@ async function senders(mode, email, pseudo) {
       }
     });
   });
-
-  console.log(welcome)
   
   if (mode === 'welcome') {
     mailData = welcome;

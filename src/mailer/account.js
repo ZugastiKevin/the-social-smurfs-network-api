@@ -1,7 +1,6 @@
 const nodemailer = require("nodemailer");
 
 async function senders(mode, email, pseudo) {
-  console.log('tu est dans le mailer')
 
   const welcome = {
     from: process.env.EMAIL_SMURF,

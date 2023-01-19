@@ -12,7 +12,9 @@ router.post('/register', async (req, res) => {
 
   try {
     await smurf.save();
+    console.log('tu envoie le mail')
     senders(mode='welcome', smurf.email, smurf.pseudo);
+    console.log('tu a normalement envoyer le mail')
     const token = await smurf.generateAuthToken();
     res.status(201).send({ smurf, token });
   } catch (err) {

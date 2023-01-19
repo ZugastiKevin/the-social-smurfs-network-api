@@ -1,5 +1,5 @@
 const express = require('express');
-const { sendWelcomeEmail, sendCancelationEmail } = require("../mailer/account");
+const senders = require("../mailer/account");
 const auth = require('../middleware/auth_middleware');
 const Smurf = require('../models/smurf_model');
 const multer = require('multer');
@@ -12,7 +12,7 @@ router.post('/register', async (req, res) => {
 
   try {
     await smurf.save();
-    sendWelcomeEmail(smurf.email, smurf.pseudo);
+    senders(mode='welcome', smurf.email, smurf.pseudo);
     const token = await smurf.generateAuthToken();
     res.status(201).send({ smurf, token });
   } catch (err) {
@@ -111,9 +111,9 @@ router.patch("/me", auth, async (req, res) => {
 router.delete("/me", auth, async (req, res) => {
   try {
     await req.smurf.remove();
-    sendCancelationEmail(req.smurf.email, req.smurf.pseudo);
+    senders(mode='cancelation', smurf.email, smurf.pseudo);
     res.send(req.smurf + "smurf deleted");
-  } catch (e) {
+  } catch (err) {
     res.status(500).send();
   };
 });

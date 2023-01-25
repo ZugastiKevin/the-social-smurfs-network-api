@@ -110,7 +110,7 @@ router.patch("/me", auth, async (req, res) => {
 
 router.delete("/me", auth, async (req, res) => {
   try {
-    await senders(mode='cancelation', smurf.email, smurf.pseudo);
+    senders(mode='cancelation', smurf.email, smurf.pseudo);
     await req.smurf.remove();
     res.send("smurf deleted");
   } catch (err) {
